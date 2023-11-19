@@ -1,16 +1,26 @@
 {
+  "name": "gosnap-nextjs",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "js-cookie": "^3.0.5",
+    "next": "14.0.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^6.18.0",
+    "styled-components": "^6.1.1"
   },
-  "engines": {
-    "node": ">=18"
+  "devDependencies": {
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
   }
 }
