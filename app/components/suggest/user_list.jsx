@@ -1,11 +1,43 @@
+"use client";
 import Image from "next/image";
 import images from "../assets/asset";
+import Follow from "../follow/follow";
+import { UserFilter } from "./user_filter";
+import { host } from "../endpoint/endpoint";
+import { FetchApi } from "../libs/api-libs";
+import { useCallback, useEffect, useState } from "react";
 
-const ListUser = async ({ users }) => {
+const ListUser = ({ token }) => {
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [followToggle, setFollowToggle] = useState(true);
+
+  const getAllUser = useCallback(async () => {
+    const response = await FetchApi(
+      host.UserEndpoint.getAllUser(),
+      token,
+      "GET"
+    );
+    setUsers(response.data);
+  }, [token]);
+
+  useEffect(() => {
+    getAllUser();
+  }, [getAllUser]);
+
+  useEffect(() => {
+    UserFilter(users, token).then((filteredResult) => {
+      setFilteredUsers(filteredResult);
+    });
+  }, [users, token, followToggle]);
+
+  const handleFollowTogle = () => {
+    setFollowToggle(!followToggle);
+  };
   return (
     <div>
       <div>
-        {users.map((user) => {
+        {filteredUsers?.map((user) => {
           return (
             <div
               key={user.username}
@@ -28,6 +60,11 @@ const ListUser = async ({ users }) => {
                   Followed by...
                 </p>
               </div>
+              <Follow
+                token={token}
+                username={user.username}
+                onFollowToggle={handleFollowTogle}
+              />
             </div>
           );
         })}
