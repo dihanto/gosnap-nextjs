@@ -2,12 +2,10 @@
 
 import React from "react";
 import Like from "../like/like";
-import {
-  HandleCommentIcon,
-  HandleGetComment,
-  HandleWriteComment,
-} from "../comment/comment";
 import { HandleIsLiked, HandleLikeNumber } from "./like_handler";
+import HandleCommentIcon from "../comment/comment_icon";
+import HandleGetComment from "../comment/get_comment";
+import HandleWriteComment from "../comment/write_comment";
 
 const PhotoDetails = ({
   photo,
