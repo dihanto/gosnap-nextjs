@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { host } from "../endpoint/endpoint";
+import { FetchApi } from "../libs/api-libs";
 
 export default function HandleGetComment({ token, photoId, commentToggle }) {
   const [allComments, setAllComments] = useState([]);
@@ -12,41 +13,28 @@ export default function HandleGetComment({ token, photoId, commentToggle }) {
       return;
     }
 
-    async function fetchComments() {
-      try {
-        const requestOptions = {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        };
+    const fetchComments = async () => {
+      const response = await FetchApi(
+        host.commentEndpoint.getComment(),
+        token,
+        "GET"
+      );
 
-        const response = await fetch(
-          host.commentEndpoint.getComment(),
-          requestOptions
-        );
-        const responseJson = await response.json();
-
-        if (responseJson.status === 200) {
-          if (responseJson.data == null) {
-            return;
-          }
-          const filteredComments = responseJson.data.filter(
-            // eslint-disable-next-line eqeqeq
-            (comment) => comment.photoId == photoId
-          );
-          setAllComments(filteredComments);
-          setCommentCount(filteredComments.length);
-          setComments(filteredComments);
-          setShowAllCommentsToggle(false);
-        } else {
-          console.log("Gagal mengambil komentar:", responseJson.message);
+      if (response.status === 200) {
+        if (response.data == null) {
+          return;
         }
-      } catch (error) {
-        console.error("Terjadi kesalahan:", error);
+        const filteredComments = response.data.filter(
+          (comment) => comment.photoId == photoId
+        );
+        setAllComments(filteredComments);
+        setCommentCount(filteredComments.length);
+        setComments(filteredComments);
+        setShowAllCommentsToggle(false);
+      } else {
+        console.log("Gagal mengambil komentar:", response.message);
       }
-    }
+    };
 
     fetchComments();
   }, [photoId, token, commentToggle]);

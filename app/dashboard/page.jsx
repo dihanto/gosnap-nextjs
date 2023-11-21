@@ -4,7 +4,7 @@ import Suggest from "../components/suggest/suggest";
 
 export default function Page() {
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA1NDE0MDksImlkIjoiODM1YjhkMWYtNDQzYy00MzUwLWI5MzQtNmMyMzNlY2VlOTVmIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJkaWhhbnRvMjMifQ.AKD6Tc336W4HAhehcbWns1j1XP6zC3iLSwe4v7042Fs";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA2Mjc4NTEsImlkIjoiODM1YjhkMWYtNDQzYy00MzUwLWI5MzQtNmMyMzNlY2VlOTVmIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJkaWhhbnRvMjMifQ.V8Xhte6G3hwDRkn2FNMRSlerSi7_3eR8GIH9PH3d2l0";
 
   return (
     <div className="flex relative">

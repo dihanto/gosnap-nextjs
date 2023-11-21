@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { host } from "../endpoint/endpoint";
+import { FetchApiWithBody } from "../libs/api-libs";
 
 export default function HandleWriteComment({
   token,
@@ -14,24 +15,16 @@ export default function HandleWriteComment({
       message,
       photoId,
     };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(commentData),
-    };
-    const response = await fetch(
+    const response = await FetchApiWithBody(
       host.commentEndpoint.writeComment(),
-      requestOptions
+      token,
+      JSON.stringify(commentData)
     );
-    const responseJson = await response.json();
-    if (responseJson.status === 201) {
+    if (response.status === 201) {
       setMessage("");
       onCommentToggle();
     } else {
-      console.log("failed to send comment : ", responseJson.message);
+      console.log("failed to send comment : ", response.message);
     }
   };
 

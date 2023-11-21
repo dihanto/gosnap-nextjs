@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -28,7 +26,7 @@ export default function Content({ token }) {
       setIsFetching,
       setIsLoading
     );
-  }, []);
+  }, [page, token]);
 
   UseIntersection(
     "infinite-scroll-target",
