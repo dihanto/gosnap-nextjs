@@ -62,7 +62,7 @@ export default function Content({ token }) {
   };
 
   return (
-    <div className="w-4/6 flex-1 pt-5">
+    <div className="w-4/6 pt-5">
       <div className="border-b border-slate-300 w-[500px] mx-auto mb-2"></div>
       {isLoading ? (
         <SkeletonLoader />

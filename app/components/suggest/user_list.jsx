@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import images from "../assets/asset";
 import Follow from "../follow/follow";
 import { UserFilter } from "./user_filter";
 import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 import { useCallback, useEffect, useState } from "react";
+import { UserCircle } from "@phosphor-icons/react";
 
 const ListUser = ({ token }) => {
   const [users, setUsers] = useState([]);
@@ -37,24 +37,27 @@ const ListUser = ({ token }) => {
   return (
     <div>
       <div>
+        <p className="font-semibold text-slate-400 my-3">Suggested for you</p>
+      </div>
+      <div>
         {filteredUsers?.map((user) => {
           return (
             <div
               key={user.username}
               className="mb-[10px] font-medium flex items-center"
             >
-              <Image
-                src={
-                  user.profilePicture !== "empty"
-                    ? user.profilePicture
-                    : images.profilePicture
-                }
-                alt="profile picture"
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-full object-cover mr-2"
-              />
-              <div>
+              {user.profilePicture !== "empty" ? (
+                <Image
+                  width={36}
+                  height={36}
+                  src={user.profilePicture}
+                  alt="profile"
+                  className="w-8 h-8 object-cover rounded-full mr-2"
+                />
+              ) : (
+                <UserCircle size={38} />
+              )}
+              <div className="flex-1">
                 <p>{user.username}</p>
                 <p className="text-slate-500 text-xss leading-none">
                   Followed by...

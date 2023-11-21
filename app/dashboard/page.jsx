@@ -1,7 +1,6 @@
 import Content from "../components/content/content";
 import Navbar from "../components/navbar/navbar";
 import Suggest from "../components/suggest/suggest";
-import GetUserLogin from "../components/suggest/user_login";
 
 export default function Page() {
   const token =
