@@ -1,11 +1,11 @@
 // PhotoDetails.js
 
 import React from "react";
-import Like from "../like/like";
 import { HandleIsLiked, HandleLikeNumber } from "./like_handler";
 import HandleCommentIcon from "../comment/comment_icon";
 import HandleGetComment from "../comment/get_comment";
 import HandleWriteComment from "../comment/write_comment";
+import LikeFunctionality from "../like/like_utility";
 
 const PhotoDetails = ({
   photo,
@@ -18,7 +18,7 @@ const PhotoDetails = ({
   return (
     <div className="w-[500px] mx-auto">
       <div className="flex">
-        <Like
+        <LikeFunctionality
           token={token}
           photoId={photo.id}
           onLikeNumber={(likeNumber) => {
