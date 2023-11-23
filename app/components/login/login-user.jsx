@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FetchUser } from "../libs/api-libs";
-import { host } from "../endpoint/endpoint";
+import { signIn } from "next-auth/react";
 
 export default function LoginUser() {
   const [username, setUsername] = useState("");
@@ -17,32 +16,24 @@ export default function LoginUser() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!username || !password) {
       return;
     }
 
-    const loginData = {
+    // signIn dengan callback onSuccess untuk melakukan navigasi
+    signIn("credentials", {
       username,
       password,
-    };
-
-    const user = await FetchUser(
-      host.UserEndpoint.login(),
-      JSON.stringify(loginData)
-    );
-    if (user.status === 200) {
-      console.log(user.data);
-    } else {
-      console.error("login failed:", user.message);
-    }
+      redirect: false, // Set redirect ke false
+    });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-yellow-300 w-2/4 p-8 rounded-lg shadow-lg">
+      <div className="bg-slate-200 w-2/4 p-8 rounded-lg shadow-lg">
         <div className="flex justify-center mb-4">
           <h1 className="text-3xl font-semibold text-slate-800">Gosnap</h1>
         </div>

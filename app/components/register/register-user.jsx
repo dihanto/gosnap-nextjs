@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { host } from "../endpoint/endpoint";
 import { FetchUser } from "../libs/api-libs";
+import Link from "next/link";
 
 const RegisterUser = () => {
   const [username, setUsername] = useState("");
@@ -50,10 +51,9 @@ const RegisterUser = () => {
         username,
         password,
       };
-      const loginEndpoint = host.UserEndpoint.login();
 
       const responseLogin = await FetchUser(
-        loginEndpoint,
+        host.UserEndpoint.login(),
         JSON.stringify(loginData)
       );
       if (responseLogin.status === 200) {
@@ -77,9 +77,9 @@ const RegisterUser = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-sky-400 w-2/5 p-8  rounded-lg shadow-lg">
+      <div className="bg-slate-200 w-2/5 p-8  rounded-lg shadow-lg">
         <div className="flex justify-center mb-4">
-          <h1 className="text-lg font-semibold text-slate-100 text-center">
+          <h1 className="text-lg font-semibold text-slate-600 text-center">
             Welcome to Gosnap, please sign up to see photos from your friends.
           </h1>
         </div>
@@ -144,16 +144,16 @@ const RegisterUser = () => {
           </div>
         </form>
         <form onSubmit={handleLogin}>
-          <div className=" flex flex-col justify-center mt-3">
-            <p className="mb-2 text-base text-slate-800 mx-auto">
+          <div className=" flex flex-col justify-center items-center mt-3">
+            <p className="mb-2 text-base text-slate-800">
               Already have an account?
             </p>
-            <button
-              type="submit"
-              className="bg-slate-200 rounded-lg mx-auto text-slate-700 text-lg w-28 hover:bg-slate-600 hover:text-slate-200 ease-in-out duration-500"
+            <Link
+              href="/login"
+              className="bg-slate-200 rounded-lg text-center text-slate-700 text-lg w-24 hover:bg-slate-600 hover:text-slate-200 ease-in-out duration-500"
             >
               Login
-            </button>
+            </Link>
           </div>
         </form>
       </div>
