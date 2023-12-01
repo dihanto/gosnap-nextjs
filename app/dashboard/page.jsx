@@ -1,10 +1,12 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Content from "../components/content/content";
 import Navbar from "../components/navbar/navbar";
 import Suggest from "../components/suggest/suggest";
 
 export default function Page() {
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDA2Mjc4NTEsImlkIjoiODM1YjhkMWYtNDQzYy00MzUwLWI5MzQtNmMyMzNlY2VlOTVmIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJkaWhhbnRvMjMifQ.V8Xhte6G3hwDRkn2FNMRSlerSi7_3eR8GIH9PH3d2l0";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE1NDM3NDIsImlkIjoiMGI0ODE1MmYtODY3ZC00MjBmLTkzNGEtZjU4MTkwNTRhOTZhIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJqb2hubGVub24ifQ.4RQmmTVYJ0zy4eH2RVQdUa04MTLvefoea9gi0FF2QLc";
 
   return (
     <div className="flex relative">

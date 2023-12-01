@@ -20,7 +20,7 @@ export default async function UserLogin({ token }) {
   return (
     <div className="flex mt-5">
       <div className="mr-2">
-        {user.profilePicture !== "empty" ? (
+        {user.data.profilePicture !== "empty" ? (
           <Image
             width={36}
             height={36}

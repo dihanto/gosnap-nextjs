@@ -26,6 +26,7 @@ const ListUser = ({ token }) => {
   }, [getAllUser]);
 
   useEffect(() => {
+    if (!users) return;
     UserFilter(users, token).then((filteredResult) => {
       setFilteredUsers(filteredResult);
     });
