@@ -57,4 +57,6 @@ const host = {
   },
 };
 
-export { host };
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE2Njg0ODgsImlkIjoiMGI0ODE1MmYtODY3ZC00MjBmLTkzNGEtZjU4MTkwNTRhOTZhIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJqb2hubGVub24ifQ.8F0X1TNsdVsQ1lJdM1IQVrdBIWFV3Z9dPAqchPcpwcc";
+export { host, token };

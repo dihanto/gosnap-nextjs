@@ -1,6 +1,5 @@
 import { Gabarito } from "next/font/google";
 import "./globals.css";
-import { Provider } from "./components/login/provider";
 
 const gabarito = Gabarito({ subsets: ["latin"] });
 
@@ -12,9 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={gabarito.className}>
-        <Provider>{children}</Provider>
-      </body>
+      <body className={gabarito.className}>{children}</body>
     </html>
   );
 }

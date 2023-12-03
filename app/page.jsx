@@ -1,15 +1,10 @@
 "use client";
-import { useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { authOptions } from "./components/auth/auth";
 
 export default function Page() {
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { host } from "../endpoint/endpoint";
-import { FetchUser } from "../libs/api-libs";
+import { FetchPost } from "../libs/api-libs";
 import Link from "next/link";
 
 const RegisterUser = () => {
@@ -41,7 +41,7 @@ const RegisterUser = () => {
       age: parseInt(age, 10),
     };
 
-    const responseRegister = await FetchUser(
+    const responseRegister = await FetchPost(
       host.UserEndpoint.register(),
       JSON.stringify(registerData)
     );
@@ -52,7 +52,7 @@ const RegisterUser = () => {
         password,
       };
 
-      const responseLogin = await FetchUser(
+      const responseLogin = await FetchPost(
         host.UserEndpoint.login(),
         JSON.stringify(loginData)
       );

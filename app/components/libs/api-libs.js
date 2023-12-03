@@ -1,4 +1,4 @@
-export const FetchUser = async (endpoint, body) => {
+export const FetchPost = async (endpoint, body) => {
   const requestOptions = {
     method: "POST",
     headers: {

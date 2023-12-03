@@ -16,18 +16,18 @@ export default function LoginUser() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!username || !password) {
       return;
     }
 
-    // signIn dengan callback onSuccess untuk melakukan navigasi
-    signIn("credentials", {
+    await signIn("credentials", {
       username,
       password,
-      redirect: false, // Set redirect ke false
+      redirect: false,
+      callbackUrl: "/dashboard",
     });
   };
 
