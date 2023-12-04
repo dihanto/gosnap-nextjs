@@ -1,9 +1,18 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Content from "../components/content/content";
-import { token } from "../components/endpoint/endpoint";
 import Navbar from "../components/navbar/navbar";
 import Suggest from "../components/suggest/suggest";
+import { useRouter } from "next/navigation";
 
-export default async function Page() {
+export default function Page() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  if (!session) {
+    router.push("/");
+    return null;
+  }
+  const token = session.token;
   return (
     <div className="flex relative">
       <Navbar />

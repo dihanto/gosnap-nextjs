@@ -5,6 +5,9 @@ import Link from "next/link";
 
 export default async function UserLogin({ token }) {
   const user = await GetUserLogin(token);
+  if (!user) {
+    return;
+  }
   return (
     <div className="flex mt-5">
       <div className="mr-2">
