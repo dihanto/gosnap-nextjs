@@ -1,8 +1,12 @@
 import { host } from "../endpoint/endpoint";
-import { FetchPost } from "../libs/api-libs";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { FetchPost } from "../libs/api-libs";
 
 export const authOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  secret: "gosnap123",
   pages: {
     signIn: "/login",
   },
@@ -17,16 +21,24 @@ export const authOptions = {
           host.UserEndpoint.login(),
           JSON.stringify(credentials)
         );
-        console.log("user", user);
-
         if (user) {
-          return {
-            jwt: user.data,
-          };
+          return user;
         } else {
           return null;
         }
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, account, profile, user }) {
+      if (account?.provider === "credentials") {
+        token.data = user?.data;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.token = token.data;
+      return session;
+    },
+  },
 };

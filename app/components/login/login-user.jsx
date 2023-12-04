@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const route = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +29,10 @@ export default function LoginUser() {
       username,
       password,
       redirect: false,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/",
     });
+
+    route.push("/");
   };
 
   return (
