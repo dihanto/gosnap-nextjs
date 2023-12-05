@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   EnvelopeSimple,
@@ -11,6 +12,11 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+    router.push("/register");
+  };
 
   return (
     <div className="w-1/5 max-w-[250px] text-sm  fixed  h-screen  border-r-[1px]  border-slate-300">
@@ -36,9 +42,7 @@ export default function Navbar() {
         <Link href={"/post"}>Create</Link>
       </div>
       <div className="ml-5 py-4 flex items-center">
-        <button onClick={() => signOut().then(router.push("/"))}>
-          Log out
-        </button>
+        <button onClick={handleLogout}>Log out</button>
       </div>
     </div>
   );
