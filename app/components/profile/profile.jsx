@@ -1,7 +1,7 @@
 import GetUserLogin from "../suggest/get_user_login";
 import GetUserPhoto from "./user_photo";
 import GetFollower from "../follow/follower";
-import Navbar from "../navbar/navbar";
+import Navbar from "../../dashboard/@navbar/page";
 import Image from "next/image";
 import { UserCircle } from "@phosphor-icons/react/dist/ssr";
 import GetFollowing from "../follow/following";

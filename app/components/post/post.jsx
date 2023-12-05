@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { host } from "../endpoint/endpoint";
 import { FetchApiWithBody } from "../libs/api-libs";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function PostPhoto({ token }) {
   const [title, setTitle] = useState("");
@@ -89,10 +90,12 @@ export default function PostPhoto({ token }) {
               className="bg-gray-200 hover:bg-gray-300 rounded-lg p-2 cursor-pointer"
             >
               {imagePreview ? (
-                <img
+                <Image
                   src={imagePreview}
                   alt="Selected"
-                  className="w-12 h-12 object-cover rounded-md"
+                  className="w-48 h-48 object-cover rounded-md"
+                  width={300}
+                  height={300}
                 />
               ) : (
                 <svg
