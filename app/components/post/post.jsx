@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { host } from "../endpoint/endpoint";
-import { FetchApiWithBody } from "../libs/api-libs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
