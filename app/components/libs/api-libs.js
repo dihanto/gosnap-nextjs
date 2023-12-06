@@ -36,9 +36,9 @@ export const FetchApi = async (endpoint, token, method) => {
   return await response.json();
 };
 
-export const FetchApiWithBody = async (endpoint, token, body) => {
+export const FetchApiWithBody = async (endpoint, token, body, method) => {
   const requestOptions = {
-    method: "POST",
+    method: method,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

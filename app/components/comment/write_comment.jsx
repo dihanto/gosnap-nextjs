@@ -18,7 +18,8 @@ export default function HandleWriteComment({
     const response = await FetchApiWithBody(
       host.commentEndpoint.writeComment(),
       token,
-      JSON.stringify(commentData)
+      JSON.stringify(commentData),
+      "POST"
     );
     if (response.status === 201) {
       setMessage("");
