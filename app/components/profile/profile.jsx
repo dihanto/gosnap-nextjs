@@ -5,6 +5,7 @@ import Navbar from "../../dashboard/@navbar/page";
 import Image from "next/image";
 import { UserCircle } from "@phosphor-icons/react/dist/ssr";
 import GetFollowing from "../follow/following";
+import Link from "next/link";
 
 export default async function Profile({ token }) {
   const user = await GetUserLogin(token);
@@ -37,12 +38,12 @@ export default async function Profile({ token }) {
             <div>
               <div className="flex">
                 <p className=" font-semibold text-base pr-2">{user.username}</p>
-                {/* <Link
-                  to="/user/update"
+                <Link
+                  href="/profile/update"
                   className="bg-slate-200 hover:bg-slate-300 rounded-lg py-1 px-2"
                 >
                   Edit Profile
-                </Link> */}
+                </Link>
               </div>
               <div>
                 <p className="text-gray-600">Bio</p>
