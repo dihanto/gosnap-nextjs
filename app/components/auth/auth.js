@@ -6,7 +6,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: "gosnap123",
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },

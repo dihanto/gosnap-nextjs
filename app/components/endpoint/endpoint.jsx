@@ -58,5 +58,5 @@ const host = {
 };
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE2Njg0ODgsImlkIjoiMGI0ODE1MmYtODY3ZC00MjBmLTkzNGEtZjU4MTkwNTRhOTZhIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJqb2hubGVub24ifQ.8F0X1TNsdVsQ1lJdM1IQVrdBIWFV3Z9dPAqchPcpwcc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE5NDA2NzYsImlkIjoiMGI0ODE1MmYtODY3ZC00MjBmLTkzNGEtZjU4MTkwNTRhOTZhIiwibGV2ZWwiOiJ1c2VyIiwidXNlcm5hbWUiOiJqb2hubGVub24ifQ.T95PvcMXQ0JHCf2wczvKD28uF-e8TvTq0dsH3VGQwO8";
 export { host, token };
