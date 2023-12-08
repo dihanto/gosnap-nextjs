@@ -3,6 +3,8 @@ import { useState } from "react";
 import { host } from "../endpoint/endpoint";
 import { FetchPost } from "../libs/api-libs";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const RegisterUser = () => {
   const [username, setUsername] = useState("");
@@ -10,7 +12,7 @@ const RegisterUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
-  //   const [login, setLogin] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e) => {
     if (e.target.name === "username") {
@@ -47,32 +49,17 @@ const RegisterUser = () => {
     );
 
     if (responseRegister.status === 201) {
-      const loginData = {
+      await signIn("credentials", {
         username,
         password,
-      };
+        redirect: false,
+        callbackUrl: "/",
+      });
 
-      const responseLogin = await FetchPost(
-        host.UserEndpoint.login(),
-        JSON.stringify(loginData)
-      );
-      if (responseLogin.status === 200) {
-        console.log("success login", responseLogin.data);
-        document.cookie = `jwt=${responseLogin.data}; path=/`;
-      }
+      router.push("/");
     } else {
       console.log(responseRegister.message);
     }
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    // setLogin(true);
-
-    // if (login) {
-    //   navigate("/login");
-    // }
   };
 
   return (
@@ -143,7 +130,7 @@ const RegisterUser = () => {
             </button>
           </div>
         </form>
-        <form onSubmit={handleLogin}>
+        <form>
           <div className=" flex flex-col justify-center items-center mt-3">
             <p className="mb-2 text-base text-slate-800">
               Already have an account?
