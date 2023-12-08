@@ -1,4 +1,4 @@
-import { FetchPhotos } from "../libs/api-libs";
+import { FetchApi, FetchPhotos } from "../libs/api-libs";
 import { host } from "../endpoint/endpoint";
 
 export const GetPhotos = async (
@@ -12,9 +12,10 @@ export const GetPhotos = async (
 ) => {
   setIsFetching(true);
   try {
-    const response = await FetchPhotos(
+    const response = await FetchApi(
       `${host.photoEndpoint.getPhoto()}?page=${page}`,
-      token
+      token,
+      "GET"
     );
     if (response.data === null) {
       return;
