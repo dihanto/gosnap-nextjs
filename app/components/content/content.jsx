@@ -15,7 +15,6 @@ export default function Content({ token }) {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
-
   useEffect(() => {
     GetPhotos(
       page,
@@ -83,7 +82,7 @@ export default function Content({ token }) {
       )}
       <div
         id="infinite-scroll-target"
-        className="h-10 w-10  absolute right-0 bottom-[680px]"
+        className="h-10 w-10 absolute right-0 -bottom-[330px]"
       ></div>
     </div>
   );
