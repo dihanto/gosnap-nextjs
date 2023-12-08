@@ -7,7 +7,7 @@ export const UserFilter = async (users, token) => {
     token,
     "GET"
   );
-  const followings = response.data.username;
+  const followings = response.data?.username;
 
   const filteredUsers = users.filter((user) => {
     if (followings) {
