@@ -1,20 +1,23 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import SkeletonLoader from "../skeleton/skeleton";
-import { GetPhotos } from "./get_photos";
-import { UseIntersection } from "./lazy_loader";
-import UserProfile from "./user_profile";
-import PhotoDisplay from "./image_content";
-import PhotoDetails from "./photo_details";
+import SkeletonLoader from "../../components/skeleton/skeleton";
+import { GetPhotos } from "../../components/content/get_photos";
+import { UseIntersection } from "../../components/content/lazy_loader";
+import UserProfile from "../../components/content/user_profile";
+import PhotoDisplay from "../../components/content/image_content";
+import PhotoDetails from "../../components/content/photo_details";
+import { useSession } from "next-auth/react";
 
-export default function Content({ token }) {
+export default function Content() {
   const [photos, setPhotos] = useState([]);
   const [likeNumbers, setLikeNumbers] = useState({});
   const [commentToggle, setCommentToggle] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
+  const { data: session } = useSession();
+  const token = session?.token;
   useEffect(() => {
     GetPhotos(
       page,
