@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import GetUserLogin from "../suggest/get_user_login";
 import { FetchApiWithBody } from "../libs/api-libs";
 import ProfilePicture from "./profile-picture";
+import { useRouter } from "next/navigation";
 
 export default function UpdateProfile({ token }) {
   const [updateProfilePicture, setUpdateProfilePicture] = useState(null);
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   const handleUserLogin = async () => {
     try {
@@ -47,6 +49,7 @@ export default function UpdateProfile({ token }) {
     );
     if (response.status === 200) {
       setUpdateProfilePicture(response.data.profilePicture);
+      router.push("/profile");
     } else {
       console.error("failed to update user:", response.message);
     }
