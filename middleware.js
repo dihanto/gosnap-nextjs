@@ -11,6 +11,8 @@ export async function middleware(req) {
   if (path.startsWith("/_next") || path.startsWith("/static")) {
     return null;
   }
+  if (token && (path === "/register" || path === "/login"))
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   if (
     !token &&
     !(
