@@ -15,7 +15,7 @@ export default function ProfilePicture({ profilePicture }) {
           />
         )
       ) : (
-        <UserCircle size={32} />
+        <UserCircle size={45} />
       )}
     </div>
   );
