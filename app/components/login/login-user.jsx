@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function LoginUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const route = useRouter();
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +32,7 @@ export default function LoginUser() {
       callbackUrl: "/",
     });
 
-    route.push("/");
+    router.push("/");
   };
 
   return (
