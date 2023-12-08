@@ -1,21 +1,12 @@
-"use client";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import Content from "../components/content/content";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { authOptions } from "../components/auth/auth";
 
-export default function Page() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  useEffect(() => {
-    if (status !== "authenticated") {
-      router.push("/register");
-    }
-  }, [router, session, status]);
-  const token = session?.token;
+export default async function Page() {
+  const session = await getServerSession(authOptions);
   return (
     <div>
-      <Content token={token} />
+      <Content token={session.token} />
     </div>
   );
 }

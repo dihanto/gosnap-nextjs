@@ -1,6 +1,8 @@
-import { token } from "../components/endpoint/endpoint";
+import { getServerSession } from "next-auth";
 import Profile from "../components/profile/profile";
+import { authOptions } from "../components/auth/auth";
 
-export default function Page() {
-  return <Profile token={token} />;
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  return <Profile token={session.token} />;
 }
