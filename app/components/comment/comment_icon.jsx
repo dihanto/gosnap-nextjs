@@ -6,7 +6,7 @@ const StyledSVG = styled.svg`
 
 export default function HandleCommentIcon() {
   return (
-    <div className="mt-[10px] scale-[.85]">
+    <div className=" scale-[.85]">
       <StyledSVG
         xmlns="http://www.w3.org/2000/svg"
         height="2em"
