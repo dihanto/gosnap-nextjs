@@ -1,5 +1,4 @@
 import React from "react";
-import HandleGetComment from "../comment/get_comment";
 import HandleWriteComment from "../comment/write_comment";
 import LikeFunctionality from "../like/like_utility";
 
@@ -17,16 +16,7 @@ const PhotoDetails = ({ photo, token, likeNumbers }) => {
         <span className="font-semibold">{photo.user.username}</span>{" "}
         {photo.caption}
       </p>
-      {/* <HandleGetComment
-        token={token}
-        photoId={photo.id}
-        commentToggle={commentToggle}
-      />
-      <HandleWriteComment
-        token={token}
-        photoId={photo.id}
-        onCommentToggle={onCommentToggle}
-      /> */}
+      <HandleWriteComment token={token} photoId={photo.id} />
     </div>
   );
 };

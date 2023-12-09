@@ -22,9 +22,7 @@ const LikeFunctionality = ({ token, photoId, likeNumbers }) => {
     }
   }, [photoId, initialStatusFetched, token]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
+  const handleClick = () => {
     if (!like) {
       const res = LikeHandler(token, photoId);
       setLikeCount((prevLikeNumbers) => ({
@@ -41,7 +39,6 @@ const LikeFunctionality = ({ token, photoId, likeNumbers }) => {
 
     setLike(!like);
   };
-  console.log(likeCount);
   return (
     <div className="mt-[11.5px] -ml-[2px] mb-4">
       <div className=" flex">
