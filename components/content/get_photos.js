@@ -1,8 +1,8 @@
 import { FetchApi } from "../libs/api-libs";
 
-export const GetPhotos = async (token) => {
+export const GetPhotos = async (token, page) => {
   const response = await FetchApi(
-    process.env.NEXT_PUBLIC_API_URL + `/photos?page=${1}`,
+    process.env.NEXT_PUBLIC_API_URL + `/photos?page=${page}`,
     token,
     "GET"
   );
