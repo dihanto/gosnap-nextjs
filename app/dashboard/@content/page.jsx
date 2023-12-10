@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <div className="w-4/6 pt-5">
       <div className="border-b border-slate-300 w-[500px] mx-auto mb-2"></div>
-      {data.photos.map((photo) => (
+      {data?.photos.map((photo) => (
         <div key={photo.id} className="pb-3 text-left text-sm">
           <UserProfile user={photo.user} />
           <PhotoDisplay photo={photo} />

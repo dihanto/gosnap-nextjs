@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import NavbarLink from "@/app/components/navbar/navbar-link";
 
 export default function Navbar() {
   const router = useRouter();
@@ -20,27 +21,12 @@ export default function Navbar() {
 
   return (
     <div className="w-1/5 max-w-[250px] text-sm  fixed  h-screen  border-r-[1px]  border-slate-300">
-      <p className="text-left ml-10 mt-5 text-2xl"> Gosnap </p>
-      <div className="ml-5 py-4 mt-3 flex items-center">
-        <HouseLine size={32} className="mr-4" />
-        <Link href={"/dashboard"}>Home</Link>
-      </div>
-      <div className="ml-5 py-4 flex items-center">
-        <MagnifyingGlass size={32} className="mr-4" />
-        <a href="#">Search</a>
-      </div>
-      <div className="ml-5 py-4 flex items-center">
-        <EnvelopeSimple size={32} className="mr-4" />
-        <a href="#">Message</a>
-      </div>
-      <div className="ml-5 py-4 flex items-center">
-        <HeartStraight size={32} className="mr-4" />
-        <a href="#">Notification</a>
-      </div>
-      <div className="ml-5 py-4 flex items-center">
-        <Plus size={32} className="mr-4" />
-        <Link href={"/post"}>Create</Link>
-      </div>
+      <h1 className="text-left ml-10 mt-5 text-2xl"> Gosnap </h1>
+      <NavbarLink href={"/dashboard"} icon={HouseLine} tag={"Home"} />
+      <NavbarLink href={"#"} icon={MagnifyingGlass} tag={"Search"} />
+      <NavbarLink href={"#"} icon={EnvelopeSimple} tag={"Message"} />
+      <NavbarLink href={"#"} icon={HeartStraight} tag={"Notification"} />
+      <NavbarLink href={"/post"} icon={Plus} tag={"Create"} />
       <div className="ml-5 py-4 flex items-center">
         <button onClick={handleLogout}>Log out</button>
       </div>
