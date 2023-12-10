@@ -1,9 +1,8 @@
-import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 
 export const LikeHandler = async (token, photoId) => {
   const response = await FetchApi(
-    host.likeEndpoint.like(photoId),
+    process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}/likes`,
     token,
     "POST"
   );
@@ -16,7 +15,7 @@ export const LikeHandler = async (token, photoId) => {
 
 export const UnlikeHandler = async (token, photoId) => {
   const response = await FetchApi(
-    host.likeEndpoint.unlike(photoId),
+    process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}/unlikes`,
     token,
     "DELETE"
   );
@@ -29,7 +28,7 @@ export const UnlikeHandler = async (token, photoId) => {
 
 export const HandleIsLiked = async (photoId, token) => {
   const response = await FetchApi(
-    host.photoEndpoint.likePhoto(photoId),
+    process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}/likes`,
     token,
     "GET"
   );

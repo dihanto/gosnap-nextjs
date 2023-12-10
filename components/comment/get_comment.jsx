@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 
 export default function HandleGetComment({ token, photoId, commentToggle }) {
@@ -16,7 +15,7 @@ export default function HandleGetComment({ token, photoId, commentToggle }) {
 
     const fetchComments = async () => {
       const response = await FetchApi(
-        host.commentEndpoint.getComment(),
+        process.env.NEXT_PUBLIC_API_URL + "/comments",
         token,
         "GET"
       );

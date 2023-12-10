@@ -1,7 +1,7 @@
-import UserLogin from "../../components/suggest/user_login";
-import ListUser from "../../components/suggest/user_list";
+import UserLogin from "../../../components/suggest/user_login";
+import ListUser from "../../../components/suggest/user_list";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/components/auth/auth";
+import { authOptions } from "@/components/auth/auth";
 
 export default async function Suggest() {
   const session = await getServerSession(authOptions);

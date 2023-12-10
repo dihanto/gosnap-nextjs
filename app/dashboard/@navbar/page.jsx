@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import {
   EnvelopeSimple,
   HeartStraight,
@@ -9,7 +8,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import NavbarLink from "@/app/components/navbar/navbar-link";
+import NavbarLink from "@/components/navbar/navbar-link";
 
 export default function Navbar() {
   const router = useRouter();

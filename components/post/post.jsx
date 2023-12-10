@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { host } from "../endpoint/endpoint";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { FetchApiWithBody } from "../libs/api-libs";
 
 export default function PostPhoto({ token }) {
   const [title, setTitle] = useState("");
@@ -34,25 +34,18 @@ export default function PostPhoto({ token }) {
       caption: caption,
       photoBase64: imagePreview,
     };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestData),
-    };
 
     try {
-      const response = await fetch(
-        host.photoEndpoint.postPhoto(),
-        requestOptions
+      const response = await FetchApiWithBody(
+        process.env.NEXT_PUBLIC_API_URL + "/photos",
+        token,
+        JSON.stringify(requestData),
+        "POST"
       );
-      const responseJson = await response.json();
-      if (responseJson.status === 201) {
+      if (response.status === 201) {
         route.push("/dashboard");
       } else {
-        console.log("Failed to post photo:", responseJson.message);
+        console.log("Failed to post photo:", response.message);
       }
     } catch (error) {
       console.error("Error:", error);

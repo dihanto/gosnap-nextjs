@@ -1,9 +1,8 @@
-import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 
 const GetFollowing = async (token) => {
   const response = await FetchApi(
-    host.followEndpoint.getFollowing(),
+    process.env.NEXT_PUBLIC_API_URL + "/follows/following",
     token,
     "GET"
   );

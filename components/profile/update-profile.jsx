@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Navbar from "@/app/dashboard/@navbar/page";
-import { host } from "../endpoint/endpoint";
 import { useEffect, useState } from "react";
 import GetUserLogin from "../suggest/get_user_login";
 import { FetchApiWithBody } from "../libs/api-libs";
@@ -42,7 +41,7 @@ export default function UpdateProfile({ token }) {
     e.preventDefault();
 
     const response = await FetchApiWithBody(
-      host.UserEndpoint.updateUser(),
+      process.env.NEXT_PUBLIC_API_URL + "/users",
       token,
       JSON.stringify({ profilePicture: updateProfilePicture }),
       "PUT"

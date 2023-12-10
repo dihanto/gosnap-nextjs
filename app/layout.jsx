@@ -1,6 +1,6 @@
 import { Gabarito } from "next/font/google";
 import "./globals.css";
-import { Provider } from "./components/login/provider";
+import { Provider } from "../components/login/provider";
 
 const gabarito = Gabarito({ subsets: ["latin"] });
 

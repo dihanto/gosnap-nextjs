@@ -1,9 +1,8 @@
 import { FetchApi } from "../libs/api-libs";
-import { host } from "../endpoint/endpoint";
 
 export const GetPhotos = async (token) => {
   const response = await FetchApi(
-    `${host.photoEndpoint.getPhoto()}?page=${2}`,
+    process.env.NEXT_PUBLIC_API_URL + `/photos?page=${1}`,
     token,
     "GET"
   );

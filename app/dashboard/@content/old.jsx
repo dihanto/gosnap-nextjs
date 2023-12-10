@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import SkeletonLoader from "../../components/skeleton/skeleton";
-import { GetPhotos } from "../../components/content/get_photos";
-import { UseIntersection } from "../../components/content/lazy_loader";
-import UserProfile from "../../components/content/user_profile";
-import PhotoDisplay from "../../components/content/image_content";
-import PhotoDetails from "../../components/content/photo_details";
+import SkeletonLoader from "../../../components/skeleton/skeleton";
+import { GetPhotos } from "../../../components/content/get_photos";
+import { UseIntersection } from "../../../components/content/lazy_loader";
+import UserProfile from "../../../components/content/user_profile";
+import PhotoDisplay from "../../../components/content/image_content";
+import PhotoDetails from "../../../components/content/photo_details";
 import { useSession } from "next-auth/react";
 
 export default function Content() {

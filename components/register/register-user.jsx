@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { host } from "../endpoint/endpoint";
 import { FetchPost } from "../libs/api-libs";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
@@ -44,7 +43,7 @@ const RegisterUser = () => {
     };
 
     const responseRegister = await FetchPost(
-      host.UserEndpoint.register(),
+      process.env.NEXT_PUBLIC_API_URL + "/users/register",
       JSON.stringify(registerData)
     );
 

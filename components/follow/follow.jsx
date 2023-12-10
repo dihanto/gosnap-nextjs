@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 
 export default function Follow({ token, username }) {
@@ -10,7 +9,7 @@ export default function Follow({ token, username }) {
   };
   const handleFollow = async () => {
     const response = await FetchApi(
-      host.followEndpoint.follow(username),
+      process.env.NEXT_PUBLIC_API_URL + `/follows/${username}`,
       token,
       "POST"
     );

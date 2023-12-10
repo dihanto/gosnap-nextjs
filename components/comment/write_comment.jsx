@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { host } from "../endpoint/endpoint";
 import { FetchApiWithBody } from "../libs/api-libs";
 import HandleGetComment from "./get_comment";
 import { HandleCommentToggle } from "./comment_toggle";
@@ -15,7 +14,7 @@ export default function HandleWriteComment({ token, photoId }) {
       photoId,
     };
     const response = await FetchApiWithBody(
-      host.commentEndpoint.writeComment(),
+      process.env.NEXT_PUBLIC_API_URL + "/comments",
       token,
       JSON.stringify(commentData),
       "POST"

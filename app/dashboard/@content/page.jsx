@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { GetPhotos } from "../../components/content/get_photos";
-import { authOptions } from "../../components/auth/auth";
-import UserProfile from "../../components/content/user_profile";
-import PhotoDisplay from "../../components/content/image_content";
-import PhotoDetails from "../../components/content/photo_details";
+import { GetPhotos } from "../../../components/content/get_photos";
+import { authOptions } from "../../../components/auth/auth";
+import UserProfile from "../../../components/content/user_profile";
+import PhotoDisplay from "../../../components/content/image_content";
+import PhotoDetails from "../../../components/content/photo_details";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);

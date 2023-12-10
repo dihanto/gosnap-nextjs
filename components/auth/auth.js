@@ -1,4 +1,3 @@
-import { host } from "../endpoint/endpoint";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { FetchPost } from "../libs/api-libs";
 
@@ -18,7 +17,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         const user = await FetchPost(
-          host.UserEndpoint.login(),
+          process.env.NEXT_PUBLIC_API_URL + "/users/login",
           JSON.stringify(credentials)
         );
         if (user) {

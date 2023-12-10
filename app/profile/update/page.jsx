@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/components/auth/auth";
-import UpdateProfile from "@/app/components/profile/update-profile";
+import { authOptions } from "@/components/auth/auth";
+import UpdateProfile from "@/components/profile/update-profile";
 import { getServerSession } from "next-auth";
 
 export default async function Page() {
