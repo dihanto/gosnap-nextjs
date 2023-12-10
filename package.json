@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.0.14",
+    "@phosphor-icons/react": "^2.0.15",
     "js-cookie": "^3.0.5",
     "next": "14.0.1",
     "next-auth": "^4.24.5",

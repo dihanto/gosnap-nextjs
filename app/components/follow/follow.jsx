@@ -1,7 +1,13 @@
+"use client";
+import { useState } from "react";
 import { host } from "../endpoint/endpoint";
 import { FetchApi } from "../libs/api-libs";
 
-export default function Follow({ token, username, onFollowToggle }) {
+export default function Follow({ token, username }) {
+  const [followToggle, setFollowToggle] = useState(true);
+  const handleFollowToggle = () => {
+    setFollowToggle(!followToggle);
+  };
   const handleFollow = async () => {
     const response = await FetchApi(
       host.followEndpoint.follow(username),
@@ -9,7 +15,7 @@ export default function Follow({ token, username, onFollowToggle }) {
       "POST"
     );
     if (response.status === 200) {
-      onFollowToggle();
+      handleFollowToggle();
     } else {
       console.log("fail follow", response.message);
     }
@@ -18,7 +24,7 @@ export default function Follow({ token, username, onFollowToggle }) {
   return (
     <span className="flex-1">
       <button onClick={handleFollow} className="text-sky-500">
-        <span>Follow</span>
+        {followToggle ? <span>Follow</span> : <span> Unfollow</span>}
       </button>
     </span>
   );

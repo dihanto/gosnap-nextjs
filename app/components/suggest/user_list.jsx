@@ -1,40 +1,12 @@
-"use client";
 import Image from "next/image";
 import Follow from "../follow/follow";
 import { UserFilter } from "./user_filter";
-import { host } from "../endpoint/endpoint";
-import { FetchApi } from "../libs/api-libs";
-import { useCallback, useEffect, useState } from "react";
-import { UserCircle } from "@phosphor-icons/react";
+import GetAllUser from "./get_all_user";
+import { UserCircle } from "@phosphor-icons/react/dist/ssr";
 
-const ListUser = ({ token }) => {
-  const [users, setUsers] = useState([]);
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [followToggle, setFollowToggle] = useState(true);
-
-  const getAllUser = useCallback(async () => {
-    const response = await FetchApi(
-      host.UserEndpoint.getAllUser(),
-      token,
-      "GET"
-    );
-    setUsers(response.data);
-  }, [token]);
-
-  useEffect(() => {
-    getAllUser();
-  }, [getAllUser]);
-
-  useEffect(() => {
-    if (!users) return;
-    UserFilter(users, token).then((filteredResult) => {
-      setFilteredUsers(filteredResult);
-    });
-  }, [users, token, followToggle]);
-
-  const handleFollowTogle = () => {
-    setFollowToggle(!followToggle);
-  };
+const ListUser = async ({ token }) => {
+  const users = await GetAllUser(token);
+  const filteredUsers = await UserFilter(users, token);
   return (
     <div>
       <div>
@@ -64,11 +36,7 @@ const ListUser = ({ token }) => {
                   Followed by...
                 </p>
               </div>
-              <Follow
-                token={token}
-                username={user.username}
-                onFollowToggle={handleFollowTogle}
-              />
+              <Follow token={token} username={user.username} />
             </div>
           );
         })}
