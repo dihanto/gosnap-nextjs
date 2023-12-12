@@ -8,7 +8,7 @@ export const UserFilter = async (users, token) => {
   );
   const followings = response.data?.username;
 
-  const filteredUsers = users.filter((user) => {
+  const filteredUsers = users?.filter((user) => {
     if (followings) {
       return !followings.includes(user.username);
     } else {
