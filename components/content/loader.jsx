@@ -1,4 +1,4 @@
-export default function Loading() {
+export default function Loader() {
   return (
     <div className="w-4/6 mx-auto">
       {[1, 2, 3].map((index) => (
