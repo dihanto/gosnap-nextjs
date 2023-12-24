@@ -12,7 +12,7 @@ export async function middleware(req) {
     return null;
   }
   if (token && (path === "/register" || path === "/login" || path === "/"))
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    return NextResponse.redirect(new URL("/feed", req.url));
   if (
     !token &&
     !(

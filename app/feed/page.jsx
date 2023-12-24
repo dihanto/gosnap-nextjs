@@ -8,6 +8,7 @@ import Loader from "@/components/content/loader";
 import PhotoDetails from "@/components/content/photo_details";
 import UserProfile from "@/components/content/user_profile";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -28,7 +29,6 @@ export default function Page() {
       setLikeNumbers(res?.likeNumbers);
       setPage((prev) => prev + 1);
       setIsLoading(false);
-      console.log(page);
     };
 
     fetchData();
@@ -47,7 +47,6 @@ export default function Page() {
               ...res.likeNumbers,
             }));
             setPage((prev) => prev + 1);
-            console.log(page);
           }
         };
         fetchData();
@@ -63,7 +62,11 @@ export default function Page() {
         <>
           <div className="border-b border-slate-300 w-[500px] mx-auto mb-2"></div>
           {photos?.map((photo) => (
-            <div key={photo.id} className="pb-3 text-left text-sm">
+            <Link
+              href={`/photo/${photo.id}`}
+              key={photo.id}
+              className="pb-3 text-left text-sm"
+            >
               <UserProfile user={photo.user} />
               <PhotoDisplay photo={photo} />
               <PhotoDetails
@@ -72,7 +75,7 @@ export default function Page() {
                 likeNumbers={likeNumbers}
               />
               <div className="border-b border-slate-300 w-[500px] mx-auto"></div>
-            </div>
+            </Link>
           ))}
         </>
       )}

@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <div className="w-1/5 max-w-[250px] text-sm  fixed  h-screen  border-r-[1px]  border-slate-300">
       <h1 className="text-left ml-10 mt-5 text-2xl"> Gosnap </h1>
-      <NavbarLink href={"/dashboard"} icon={HouseLine} tag={"Home"} />
+      <NavbarLink href={"/feed"} icon={HouseLine} tag={"Home"} />
       <NavbarLink href={"#"} icon={MagnifyingGlass} tag={"Search"} />
       <NavbarLink href={"#"} icon={EnvelopeSimple} tag={"Message"} />
       <NavbarLink href={"#"} icon={HeartStraight} tag={"Notification"} />

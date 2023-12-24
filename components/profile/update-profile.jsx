@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import Navbar from "@/app/dashboard/@navbar/page";
+import Navbar from "@/app/feed/@navbar/page";
 import { useEffect, useState } from "react";
 import GetUserLogin from "../suggest/get_user_login";
 import { FetchApiWithBody } from "../libs/api-libs";
