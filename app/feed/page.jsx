@@ -62,20 +62,18 @@ export default function Page() {
         <>
           <div className="border-b border-slate-300 w-[500px] mx-auto mb-2"></div>
           {photos?.map((photo) => (
-            <Link
-              href={`/photo/${photo.id}`}
-              key={photo.id}
-              className="pb-3 text-left text-sm"
-            >
+            <div key={photo.id} className="pb-3 text-left text-sm">
               <UserProfile user={photo.user} />
-              <PhotoDisplay photo={photo} />
+              <Link href={`/photo/${photo.id}`}>
+                <PhotoDisplay photo={photo} />
+              </Link>
               <PhotoDetails
                 photo={photo}
                 token={session.token}
                 likeNumbers={likeNumbers}
               />
               <div className="border-b border-slate-300 w-[500px] mx-auto"></div>
-            </Link>
+            </div>
           ))}
         </>
       )}

@@ -35,12 +35,12 @@ const Modal = ({ children }) => {
   return (
     <div
       ref={overlay}
-      className="fixed z-100 left-0 right-0 top-0 bottom-0 mx-auto bg-black/70"
+      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/70"
       onClick={onClick}
     >
       <div
         ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-10/12 md:w-8/12 lg:w-1/2 p-6"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-slate-200  rounded-lg"
       >
         {children}
       </div>
