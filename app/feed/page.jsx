@@ -54,6 +54,7 @@ export default function Page() {
     },
     [page, session?.token, photos, likeNumbers]
   );
+
   return (
     <div className="w-4/6 pt-5">
       {isLoading ? (
@@ -64,7 +65,7 @@ export default function Page() {
           {photos?.map((photo) => (
             <div key={photo.id} className="pb-3 text-left text-sm">
               <UserProfile user={photo.user} />
-              <Link href={`/photo/${photo.id}`}>
+              <Link href={`/photo/${photo.id}`} scroll={false}>
                 <PhotoDisplay photo={photo} />
               </Link>
               <PhotoDetails

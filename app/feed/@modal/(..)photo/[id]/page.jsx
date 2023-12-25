@@ -1,29 +1,54 @@
-import { authOptions } from "@/components/auth/auth";
+"use client";
 import PhotoDisplay from "@/components/content/image_content";
 import PhotoDetails from "@/components/content/photo_details";
 import UserProfile from "@/components/content/user_profile";
 import Modal from "@/components/core/Modal";
+import { useModalContext } from "@/components/core/Modal/modal_context";
 import { FetchApi } from "@/components/libs/api-libs";
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
-export default async function DetailPicture(props) {
+export default function DetailPicture(props) {
+  const { modalData } = useModalContext();
+  const { data: session } = useSession();
+  const [photo, setPhoto] = useState(null);
+  const [isModal, setIsModal] = useState(false);
   const { params } = props;
-  const session = await getServerSession(authOptions);
-  const response = await FetchApi(
-    process.env.NEXT_PUBLIC_API_URL + "/photos/" + params.id,
-    session.token,
-    "GET"
-  );
 
-  return (
-    <Modal>
-      <UserProfile user={response.data.user} />
-      <PhotoDisplay photo={response.data} />
-      <PhotoDetails
-        photo={response.data}
-        token={session.token}
-        likeNumbers={response.data.like.likeCount}
-      />
-    </Modal>
-  );
+  const handleGetPhoto = async () => {
+    const response = await FetchApi(
+      process.env.NEXT_PUBLIC_API_URL + "/photos/" + params.id,
+      session?.token,
+      "GET"
+    );
+    setPhoto(response?.data);
+  };
+
+  useEffect(() => {
+    if (modalData) {
+      setIsModal((prevState) => !prevState);
+    }
+    if (!modalData) {
+      setIsModal((prevState) => !prevState);
+    }
+  }, [modalData]);
+
+  useEffect(() => {
+    if (!photo) {
+      handleGetPhoto();
+    }
+  });
+  if (photo) {
+    return (
+      <Modal>
+        <UserProfile user={photo?.user} modal={isModal} />
+        <PhotoDisplay photo={photo} />
+        <PhotoDetails
+          photo={photo}
+          token={session?.token}
+          likeNumbers={photo?.like.likeCount}
+        />
+      </Modal>
+    );
+  }
 }

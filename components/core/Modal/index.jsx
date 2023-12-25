@@ -1,16 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
+import { useModalContext } from "./modal_context";
 
 const Modal = ({ children }) => {
+  const { modalData, setModalData } = useModalContext();
   const overlay = useRef(null);
   const wrapper = useRef(null);
 
   const router = useRouter();
 
   const close = useCallback(() => {
+    if (modalData) {
+      return;
+    }
+    setModalData({ modal: "close" });
     router.back();
-  }, [router]);
+  }, [modalData, router, setModalData]);
 
   const onClick = useCallback(
     (e) => {
@@ -29,9 +35,13 @@ const Modal = ({ children }) => {
   );
 
   useEffect(() => {
+    if (!modalData) {
+      return;
+    }
+    setModalData(null);
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onKeyDown]);
+  }, [modalData, onKeyDown, setModalData]);
   return (
     <div
       ref={overlay}

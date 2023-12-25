@@ -5,8 +5,6 @@ import { HandleIsLiked, LikeHandler, UnlikeHandler } from "./like_handler";
 import HandleCommentIcon from "../comment/comment_icon";
 
 const LikeFunctionality = ({ token, photoId, likeNumbers }) => {
-  console.log("photo detail" + likeNumbers);
-
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(likeNumbers);
   const [initialStatusFetched, setInitialStatusFetched] = useState(false);

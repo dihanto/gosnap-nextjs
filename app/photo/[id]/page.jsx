@@ -14,8 +14,6 @@ export default async function DetailPicture(props) {
     "GET"
   );
 
-  console.log(response);
-
   return (
     <div className="container mx-auto p-10">
       <div className="w-1/2 mx-auto border border-gray-600">
