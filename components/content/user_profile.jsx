@@ -2,10 +2,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { UserCircle } from "@phosphor-icons/react/dist/ssr";
+import { FetchApi, FetchApiWithBody } from "../libs/api-libs";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const UserProfile = ({ user, modal }) => {
+const UserProfile = ({ user, modal, photoId }) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const { data: session } = useSession();
   const deleteEditButtonRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -29,12 +34,24 @@ const UserProfile = ({ user, modal }) => {
     setShowDeleteButton(!showDeleteButton);
   };
 
-  const handleDelete = () => {
-    console.log("Deleting user...");
+  const handleDelete = async () => {
+    const res = await FetchApi(
+      process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}`,
+      session?.token,
+      "DELETE"
+    );
+    alert(res.message);
+    router.back();
   };
 
   const handleEdit = () => {
-    console.log("Editing user...");
+    // const handleSubmit = async () => {
+    //   const res = await FetchApiWithBody(process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}`, session?.token,, "PUT")
+    // }
+    // <div>
+    //   <form onSubmit={handleSubmit}>
+    //   </form>
+    // </div>;
   };
 
   return (

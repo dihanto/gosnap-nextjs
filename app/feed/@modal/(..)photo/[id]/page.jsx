@@ -41,7 +41,7 @@ export default function DetailPicture(props) {
   if (photo) {
     return (
       <Modal>
-        <UserProfile user={photo?.user} modal={isModal} />
+        <UserProfile user={photo?.user} modal={isModal} photoId={photo.id} />
         <PhotoDisplay photo={photo} />
         <PhotoDetails
           photo={photo}
