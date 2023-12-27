@@ -5,9 +5,11 @@ import { UserCircle } from "@phosphor-icons/react/dist/ssr";
 import { FetchApi, FetchApiWithBody } from "../libs/api-libs";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import EditPhoto from "../option/edit_photo";
 
 const UserProfile = ({ user, modal, photoId }) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const [showEditPhoto, setShowEditPhoto] = useState(false);
   const { data: session } = useSession();
   const deleteEditButtonRef = useRef(null);
   const router = useRouter();
@@ -45,13 +47,7 @@ const UserProfile = ({ user, modal, photoId }) => {
   };
 
   const handleEdit = () => {
-    // const handleSubmit = async () => {
-    //   const res = await FetchApiWithBody(process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}`, session?.token,, "PUT")
-    // }
-    // <div>
-    //   <form onSubmit={handleSubmit}>
-    //   </form>
-    // </div>;
+    setShowEditPhoto((prev) => !prev);
   };
 
   return (
@@ -101,6 +97,11 @@ const UserProfile = ({ user, modal, photoId }) => {
           </div>
         )}
       </div>
+      {showEditPhoto && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg">
+          <EditPhoto />
+        </div>
+      )}
     </div>
   );
 };
