@@ -7,12 +7,12 @@ import { useSession } from "next-auth/react";
 export default function PhotoOptions({ photoId, modal, onUpdate }) {
   const [showEditPhoto, setShowEditPhoto] = useState(false);
   const router = useRouter();
-  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const [showOptionsButton, setShowOptionsButton] = useState(false);
   const { data: session } = useSession();
-  const deleteEditButtonRef = useRef(null);
+  const optionsEditButtonRef = useRef(null);
 
   const handleOption = () => {
-    setShowDeleteButton(!showDeleteButton);
+    setShowOptionsButton(!showOptionsButton);
   };
 
   useEffect(() => {
@@ -25,11 +25,11 @@ export default function PhotoOptions({ photoId, modal, onUpdate }) {
 
   const handleClickOutside = (event) => {
     if (
-      deleteEditButtonRef.current &&
-      !deleteEditButtonRef.current.contains(event.target) &&
+      optionsEditButtonRef.current &&
+      !optionsEditButtonRef.current.contains(event.target) &&
       event.target.tagName !== "BUTTON"
     ) {
-      setShowDeleteButton(false);
+      setShowOptionsButton(false);
     }
   };
 
@@ -57,20 +57,20 @@ export default function PhotoOptions({ photoId, modal, onUpdate }) {
             ...
           </button>
         )}
-        {showDeleteButton && (
+        {showOptionsButton && (
           <div
-            ref={deleteEditButtonRef}
+            ref={optionsEditButtonRef}
             className="absolute right-2 w-[74px] h-20 bg-white rounded-lg shadow-xl text-sm"
           >
             <button
-              className="transition duration-200 ease-in-out transform hover:scale-105 pl-3 my-2"
+              className="transition duration-200 ease-in-out transform hover:text-blue-400 pl-3 my-2"
               onClick={handleDelete}
             >
               Delete
             </button>
             <br />
             <button
-              className="transition duration-200 ease-in-out transform hover:scale-105 pl-3"
+              className="transition duration-200 ease-in-out transform hover:text-blue-400 pl-3"
               onClick={handleEdit}
             >
               Edit
