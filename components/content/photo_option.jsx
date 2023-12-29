@@ -4,7 +4,7 @@ import { FetchApi } from "../libs/api-libs";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export default function PhotoOptions({ photoId, modal }) {
+export default function PhotoOptions({ photoId, modal, onUpdate }) {
   const [showEditPhoto, setShowEditPhoto] = useState(false);
   const router = useRouter();
   const [showDeleteButton, setShowDeleteButton] = useState(false);
@@ -80,7 +80,11 @@ export default function PhotoOptions({ photoId, modal }) {
       </div>
       {showEditPhoto && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg">
-          <EditPhoto />
+          <EditPhoto
+            photoId={photoId}
+            onUpdate={onUpdate}
+            onEdit={handleEdit}
+          />
         </div>
       )}
     </div>

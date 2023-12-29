@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import PhotoDisplay from "@/components/content/image_content";
 import PhotoDetails from "@/components/content/photo_details";
@@ -13,6 +14,7 @@ export default function DetailPicture(props) {
   const { data: session } = useSession();
   const [photo, setPhoto] = useState(null);
   const [isModal, setIsModal] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
   const { params } = props;
 
   const handleGetPhoto = async () => {
@@ -22,6 +24,10 @@ export default function DetailPicture(props) {
       "GET"
     );
     setPhoto(response?.data);
+  };
+
+  const handleUpdate = async () => {
+    setIsUpdate(true);
   };
 
   useEffect(() => {
@@ -34,14 +40,17 @@ export default function DetailPicture(props) {
   }, [modalData]);
 
   useEffect(() => {
-    if (!photo) {
-      handleGetPhoto();
-    }
-  });
+    handleGetPhoto();
+  }, [photo, isUpdate]);
   if (photo) {
     return (
       <Modal>
-        <UserProfile user={photo?.user} modal={isModal} photoId={photo.id} />
+        <UserProfile
+          user={photo?.user}
+          modal={isModal}
+          photoId={photo.id}
+          onUpdate={handleUpdate}
+        />
         <PhotoDisplay photo={photo} />
         <PhotoDetails
           photo={photo}

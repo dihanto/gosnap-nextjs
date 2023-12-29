@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import EditPhoto from "../option/edit_photo";
 import PhotoOptions from "./photo_option";
 
-const UserProfile = ({ user, modal, photoId }) => {
+const UserProfile = ({ user, modal, photoId, onUpdate }) => {
   return (
     <div className="flex justify-between w-[500px] h-[37px]">
       <div className=" items-center flex">
@@ -26,7 +26,7 @@ const UserProfile = ({ user, modal, photoId }) => {
 
         <p className="font-semibold">{user.username}</p>
       </div>
-      <PhotoOptions photoId={photoId} modal={modal} />
+      <PhotoOptions photoId={photoId} modal={modal} onUpdate={onUpdate} />
     </div>
   );
 };
