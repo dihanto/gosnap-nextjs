@@ -46,7 +46,7 @@ export default function DetailPicture(props) {
         <PhotoDetails
           photo={photo}
           token={session?.token}
-          likeNumbers={photo?.like.likeCount}
+          likeFromModal={photo?.like.likeCount}
         />
       </Modal>
     );

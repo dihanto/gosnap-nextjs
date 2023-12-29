@@ -4,7 +4,7 @@ import LikeButton from "./like_button";
 import { HandleIsLiked, LikeHandler, UnlikeHandler } from "./like_handler";
 import HandleCommentIcon from "../comment/comment_icon";
 
-const LikeFunctionality = ({ token, photoId, likeNumbers }) => {
+const LikeFunctionality = ({ token, photoId, likeNumbers, likeFromModal }) => {
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(likeNumbers);
   const [initialStatusFetched, setInitialStatusFetched] = useState(false);
@@ -46,7 +46,7 @@ const LikeFunctionality = ({ token, photoId, likeNumbers }) => {
         <HandleCommentIcon />
       </div>
       <p className="mt-1 text-sm2 leading-sm2 font-semibold absolute ml-1">
-        {likeCount[photoId] ? likeCount[photoId] : likeNumbers} likes
+        {likeFromModal ? likeFromModal : likeCount?.[photoId] ?? 0} likes
       </p>
     </div>
   );

@@ -43,7 +43,7 @@ export default function PostPhoto({ token }) {
         "POST"
       );
       if (response.status === 201) {
-        route.push("/dashboard");
+        route.push("/feed");
       } else {
         console.log("Failed to post photo:", response.message);
       }
