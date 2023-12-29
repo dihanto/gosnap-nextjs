@@ -6,50 +6,9 @@ import { FetchApi, FetchApiWithBody } from "../libs/api-libs";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import EditPhoto from "../option/edit_photo";
+import PhotoOptions from "./photo_option";
 
 const UserProfile = ({ user, modal, photoId }) => {
-  const [showDeleteButton, setShowDeleteButton] = useState(false);
-  const [showEditPhoto, setShowEditPhoto] = useState(false);
-  const { data: session } = useSession();
-  const deleteEditButtonRef = useRef(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-  const handleClickOutside = (event) => {
-    if (
-      deleteEditButtonRef.current &&
-      !deleteEditButtonRef.current.contains(event.target) &&
-      event.target.tagName !== "BUTTON"
-    ) {
-      setShowDeleteButton(false);
-    }
-  };
-
-  const handleOption = () => {
-    setShowDeleteButton(!showDeleteButton);
-  };
-
-  const handleDelete = async () => {
-    const res = await FetchApi(
-      process.env.NEXT_PUBLIC_API_URL + `/photos/${photoId}`,
-      session?.token,
-      "DELETE"
-    );
-    alert(res.message);
-    router.back();
-  };
-
-  const handleEdit = () => {
-    setShowEditPhoto((prev) => !prev);
-  };
-
   return (
     <div className="flex justify-between w-[500px] h-[37px]">
       <div className=" items-center flex">
@@ -67,41 +26,7 @@ const UserProfile = ({ user, modal, photoId }) => {
 
         <p className="font-semibold">{user.username}</p>
       </div>
-      <div>
-        {modal && (
-          <button
-            className="transition duration-300 ease-in-out transform hover:scale-110 mr-1"
-            onClick={handleOption}
-          >
-            ...
-          </button>
-        )}
-        {showDeleteButton && (
-          <div
-            ref={deleteEditButtonRef}
-            className="absolute right-2 w-[74px] h-20 bg-white rounded-lg shadow-xl text-sm"
-          >
-            <button
-              className="transition duration-200 ease-in-out transform hover:scale-105 pl-3 my-2"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-            <br />
-            <button
-              className="transition duration-200 ease-in-out transform hover:scale-105 pl-3"
-              onClick={handleEdit}
-            >
-              Edit
-            </button>
-          </div>
-        )}
-      </div>
-      {showEditPhoto && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg">
-          <EditPhoto />
-        </div>
-      )}
+      <PhotoOptions photoId={photoId} modal={modal} />
     </div>
   );
 };
