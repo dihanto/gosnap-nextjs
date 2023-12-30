@@ -55,6 +55,21 @@ export default function Page() {
     [page, session?.token, photos, likeNumbers]
   );
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        setPhotos([]);
+        setPage(0);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <div className="w-4/6 pt-5">
       {isLoading ? (
