@@ -1,8 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { FetchApiWithBody } from "../libs/api-libs";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function EditPhoto({ photoId, onUpdate, onEdit }) {
