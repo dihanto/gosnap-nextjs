@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import { FetchApi } from "../libs/api-libs";
 
 export const GetPhotos = async (token, page) => {
@@ -6,6 +7,9 @@ export const GetPhotos = async (token, page) => {
     token,
     "GET"
   );
+  if (response.status === 401) {
+    signOut();
+  }
   if (response.data === null) {
     return;
   }
