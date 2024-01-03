@@ -23,6 +23,9 @@ export default function Page() {
       return;
     }
     const fetchData = async () => {
+      if (page === 0) {
+        setPage((prev) => prev + 1);
+      }
       setIsLoading(true);
       const res = await GetPhotos(session?.token, page);
       setPhotos(res?.photos);
@@ -32,12 +35,12 @@ export default function Page() {
     };
 
     fetchData();
-  }, [session?.token, session]);
+  }, [session?.token]);
 
   UseIntersection(
     "infinite-scroll-target",
     () => {
-      if (photos) {
+      if (photos != undefined && !isLoading) {
         const fetchData = async () => {
           const res = await GetPhotos(session?.token, page);
           if (res) {
@@ -52,23 +55,8 @@ export default function Page() {
         fetchData();
       }
     },
-    [page, session?.token, photos, likeNumbers]
+    [page, likeNumbers]
   );
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (!document.hidden) {
-        setPhotos([]);
-        setPage(0);
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
 
   return (
     <div className="w-4/6 pt-5">
