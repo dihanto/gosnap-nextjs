@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FetchPost } from "../libs/api-libs";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
@@ -10,7 +10,8 @@ const RegisterUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -22,15 +23,23 @@ const RegisterUser = () => {
       setEmail(e.target.value);
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
-    } else if (e.target.name === "age") {
-      setAge(e.target.value);
+    } else if (e.target.name === "confirmPassword") {
+      setConfirmPassword(e.target.value);
     }
   };
 
+  useEffect(() => {
+    if (password !== confirmPassword) {
+      setPasswordError("Password do not match");
+      return;
+    } else {
+      setPasswordError("");
+    }
+  }, [password, confirmPassword]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !name || !email || !password || !age) {
+    if (!username || !name || !email || !password || !confirmPassword) {
       return;
     }
 
@@ -39,7 +48,6 @@ const RegisterUser = () => {
       name,
       email,
       password,
-      age: parseInt(age, 10),
     };
 
     const responseRegister = await FetchPost(
@@ -110,16 +118,24 @@ const RegisterUser = () => {
               className="w-3/4 rounded-md pl-3"
             />
           </div>
-          <div className="flex justify-center  my-2 h-7">
-            <input
-              type="number"
-              name="age"
-              value={age}
-              onChange={handleChange}
-              placeholder="Age"
-              className="w-3/4 rounded-md pl-3"
-            />
+          <div className="flex-row   my-2 h-7">
+            <div className="flex justify-center h-7">
+              <input
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+                className="w-3/4 rounded-md pl-3 self-center"
+              />
+            </div>
+            <div className="ml-20">
+              {passwordError && (
+                <div className="text-red-500 text-xs mb-2">{passwordError}</div>
+              )}
+            </div>
           </div>
+
           <div className="mt-4 bg-slate-200 flex justify-center mx-auto w-28 rounded-lg group hover:bg-slate-600 ease-in-out duration-500">
             <button
               type="submit"
