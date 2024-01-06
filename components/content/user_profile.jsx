@@ -9,6 +9,15 @@ import EditPhoto from "../option/edit_photo";
 import PhotoOptions from "./photo_option";
 
 const UserProfile = ({ user, modal, photoId, onUpdate }) => {
+  const { data: session } = useSession();
+  const [isOwn, setIsOwn] = useState(false);
+  useEffect(() => {
+    if (user.username === session.user) {
+      setIsOwn(true);
+    } else {
+      setIsOwn(false);
+    }
+  }, [session.user, user.username]);
   return (
     <div className="flex justify-between w-[500px] h-[37px]">
       <div className=" items-center flex">
@@ -26,7 +35,9 @@ const UserProfile = ({ user, modal, photoId, onUpdate }) => {
 
         <p className="font-semibold">{user.username}</p>
       </div>
-      <PhotoOptions photoId={photoId} modal={modal} onUpdate={onUpdate} />
+      {isOwn && (
+        <PhotoOptions photoId={photoId} modal={modal} onUpdate={onUpdate} />
+      )}
     </div>
   );
 };
