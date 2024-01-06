@@ -45,18 +45,31 @@ export default function DetailPicture(props) {
   if (photo) {
     return (
       <Modal>
-        <UserProfile
-          user={photo?.user}
-          modal={isModal}
-          photoId={photo.id}
-          onUpdate={handleUpdate}
-        />
-        <PhotoDisplay photo={photo} />
-        <PhotoDetails
-          photo={photo}
-          token={session?.token}
-          likeFromModal={photo?.like.likeCount}
-        />
+        <div className="flex gap-4">
+          <div className="pl-2 h-[620px] border-r-[1px] border-slate-300 flex items-center">
+            <PhotoDisplay photo={photo} />
+          </div>
+          <div className="">
+            <div className="mt-2 ">
+              <UserProfile
+                user={photo?.user}
+                modal={isModal}
+                photoId={photo.id}
+                onUpdate={handleUpdate}
+              />
+              <div className="mt-2 absolute right-0 border-b-[1px] border-slate-300 w-[516px]"></div>
+            </div>
+            <div className="absolute bottom-1 ">
+              <div className="mt-2 absolute right-0 border-b-[1px] border-slate-300 w-[516px]"></div>
+
+              <PhotoDetails
+                photo={photo}
+                token={session?.token}
+                likeFromModal={photo?.like.likeCount}
+              />
+            </div>
+          </div>
+        </div>
       </Modal>
     );
   }

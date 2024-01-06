@@ -50,7 +50,7 @@ const Modal = ({ children }) => {
     >
       <div
         ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-slate-200  rounded-lg"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-200  h-[620px] rounded-lg"
       >
         {children}
       </div>
