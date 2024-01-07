@@ -1,8 +1,8 @@
 import React from "react";
-import HandleWriteComment from "../comment/write_comment";
 import LikeFunctionality from "../like/like_utility";
+import { RenderComment } from "../comment/comment";
 
-const PhotoDetails = ({ photo, token, likeNumbers, likeFromModal }) => {
+const PhotoDetails = ({ photo, token, likeNumbers, likeFromModal, modal }) => {
   return (
     <div className="w-[500px] mx-auto">
       <div className="flex">
@@ -17,7 +17,7 @@ const PhotoDetails = ({ photo, token, likeNumbers, likeFromModal }) => {
         <span className="font-semibold">{photo.user.username}</span>{" "}
         {photo.caption}
       </p>
-      <HandleWriteComment token={token} photoId={photo.id} />
+      {modal ? null : <RenderComment token={token} photoId={photo.id} />}
     </div>
   );
 };

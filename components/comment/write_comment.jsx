@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
 import { FetchApiWithBody } from "../libs/api-libs";
-import HandleGetComment from "./get_comment";
-import { HandleCommentToggle } from "./comment_toggle";
 
-export default function HandleWriteComment({ token, photoId }) {
+export default function HandleWriteComment({
+  token,
+  photoId,
+  onCommentToggle,
+}) {
   const [message, setMessage] = useState("");
-  const [commentToggle, setCommentToggle] = useState(false);
 
   const handleSubmitComment = async () => {
     const commentData = {
@@ -21,7 +22,7 @@ export default function HandleWriteComment({ token, photoId }) {
     );
     if (response.status === 201) {
       setMessage("");
-      HandleCommentToggle(setCommentToggle, commentToggle);
+      onCommentToggle();
     } else {
       console.log("failed to send comment : ", response.message);
     }
@@ -36,12 +37,6 @@ export default function HandleWriteComment({ token, photoId }) {
 
   return (
     <div>
-      <HandleGetComment
-        token={token}
-        photoId={photoId}
-        commentToggle={commentToggle}
-      />
-
       <form className="text-sm2 leading-sm2 mt-1">
         <input
           type="text"
