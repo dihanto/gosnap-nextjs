@@ -37,14 +37,13 @@ export default function HandleWriteComment({
 
   return (
     <div>
-      <form className="text-sm2 leading-sm2 mt-1">
-        <input
-          type="text"
+      <form className="text-sm2 leading-sm2">
+        <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Add a comment..."
-          className="placeholder-text-slate-500 mb-4 focus:outline-none bg-slate-50 placeholder:font-light w-full h-auto"
+          className="placeholder-text-slate-500 p-3 focus:outline-none bg-slate-50 placeholder:font-light w-full h-auto border-none resize-none"
         />
       </form>
     </div>

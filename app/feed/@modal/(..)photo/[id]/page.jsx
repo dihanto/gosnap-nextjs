@@ -59,27 +59,23 @@ export default function DetailPicture(props) {
   if (photo) {
     return (
       <Modal>
-        <div className="flex gap-4">
-          {/* Photo Display */}
+        <div className="flex">
           <div className="pl-2 h-[620px] border-r-[1px] border-slate-300 flex items-center">
             <PhotoDisplay photo={photo} />
           </div>
 
-          {/* Right-side content */}
           <div className="flex flex-col w-full">
-            {/* User Profile */}
-            <div className="mt-2">
+            <div className="my-2 pl-2">
               <UserProfile
                 user={photo?.user}
                 modal={isModal}
                 photoId={photo.id}
                 onUpdate={handleUpdate}
               />
-              <div className="mt-2 border-b-[1px] border-slate-300 w-full"></div>
             </div>
+            <div className="mt-2 border-b-[1px] border-slate-300 w-full"></div>
 
-            {/* Comments */}
-            <div className="flex-1 space-y-4 mt-[5px] w-full">
+            <div className="flex-1 space-y-4 mt-[5px] w-full pl-2">
               {comments.map((comment) => (
                 <div key={comment.id} className="flex mb-2">
                   <div className="text-sm font-semibold pr-2">
@@ -89,9 +85,8 @@ export default function DetailPicture(props) {
                 </div>
               ))}
             </div>
-
-            {/* Photo Details */}
-            <div className="mt-auto">
+            <div className="mt-2 border-b-[1px] border-slate-300 w-full"></div>
+            <div className="pl-2">
               <PhotoDetails
                 photo={photo}
                 token={session?.token}
@@ -99,6 +94,7 @@ export default function DetailPicture(props) {
                 modal={isModal}
               />
             </div>
+            <div className="mt-3 border-b-[1px] border-slate-300 w-full"></div>
             <HandleWriteComment
               token={session?.token}
               photoId={photo.id}
