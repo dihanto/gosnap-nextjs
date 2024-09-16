@@ -7,7 +7,7 @@ export async function middleware(req) {
     req: req,
     secret: process.env.NEXTAUTH_SECRET,
   });
-
+  console.log(token + "middleware token", path);
   if (path.startsWith("/_next") || path.startsWith("/static")) {
     return null;
   }
